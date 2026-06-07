@@ -6,60 +6,62 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-O **Storagium** é uma plataforma web moderna e robusta projetada para o gerenciamento inteligente de inventário e controle de estoque para lojas e comércios. Inspirado na eficiência, organização e padronização dos **contêineres de transporte de cargas**, o Storagium traz a lógica da logística portuária global para o ecossistema digital de varejo, permitindo rastrear, armazenar e movimentar mercadorias com máxima precisão.
+**Storagium** is a modern and robust web platform designed for smart inventory management and stock control tailored for retail and commercial stores. Inspired by the efficiency, organization, and standardization of **cargo shipping containers**, Storagium translates global port logistics logic into the digital retail ecosystem, allowing businesses to track, store, and move merchandise with maximum precision.
 
 ---
 
-## 🎯 Sobre o Projeto
+## 🎯 About the Project
 
-Gerenciar estoque de forma manual ou através de sistemas legados frequentemente resulta em perdas financeiras, furos de inventário e falhas operacionais. O Storagium resolve este problema centralizando toda a operação logística de uma loja em uma interface limpa, modular e altamente responsiva. 
+Managing stock manually or through legacy systems frequently results in financial losses, inventory discrepancies, and operational bottlenecks. Storagium addresses this challenge by centralizing an entire store's logistical operations within a clean, modular, and highly responsive interface.
 
-Cada lote de produto funciona como um contêiner virtual: possui identificação única, localização específica, histórico de movimentação imutável e métricas de ocupação.
-
----
-
-## ✨ Funcionalidades Principais
-
-* **📦 Gestão Estruturada de Estoque:** Cadastro detalhado de produtos com suporte a variações (SKU, cores, tamanhos), categorização inteligente e controle de lotes.
-* **⚡ Movimentações em Tempo Real:** Operações rápidas de Entrada (Check-in), Saída (Check-out) e Transferência interna com atualização instantânea do painel.
-* **⚠️ Alertas de Escassez (Estoque Mínimo):** Notificações visuais automáticas quando um item atinge o limite de segurança operacional.
-* **📊 Dashboard de Ocupação:** Painel analítico que exibe graficamente a capacidade de armazenamento ocupada, produtos mais rodados e saúde financeira do estoque.
-* **🕵️ Rastreabilidade e Auditoria:** Histórico completo de auditoria detalhando *quem*, *quando* e *o quê* movimentou no inventário.
-* **🐳 Arquitetura Containerizada:** Pronto para produção e desenvolvimento utilizando Docker, garantindo paridade de ambientes e facilidade de deploy.
+Every product batch operates like a virtual container: it features a unique identifier, a specific location tracking path, an immutable movement history, and real-time capacity metrics.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Key Features
 
-A arquitetura do Storagium foi dividida estrategicamente para garantir escalabilidade, performance e facilidade de manutenção:
+* **📦 Structured Stock Management:** Detailed product registration supporting variations (SKU, colors, sizes), smart categorization, and batch control.
+* **⚡ Real-Time Stock Movements:** Swift Check-in (Inbound), Check-out (Outbound), and Internal Transfer operations with instantaneous dashboard updates.
+* **⚠️ Low Stock Alerts:** Automated visual notifications triggered as soon as an item hits its operational safety threshold.
+* **📊 Capacity & Occupancy Dashboard:** An analytical panel graphically rendering occupied storage capacity, fast-moving products, and financial stock health metrics.
+* **🕵️ Traceability & Audit Logs:** Comprehensive audit trails detailing *who*, *when*, and *what* was modified or moved within the inventory.
+* **🐳 Containerized Architecture:** Production and development ready utilizing Docker, ensuring environmental parity and frictionless deployment.
+
+---
+
+## 🛠️ Tech Stack
+
+Storagium's architecture is strategically decoupled to guarantee scalability, performance, and maintainability:
 
 ### Frontend
-* **ReactJS** (v18+) com **TypeScript** para uma interface componentizada e tipagem estática segura.
-* **Tailwind CSS** para estilização utilitária moderna e totalmente responsiva.
-* **Lucide React** para o ecossistema de ícones minimalistas.
+* **ReactJS** (v18+) with **TypeScript** for component-driven UI and strict type safety.
+* **Tailwind CSS** for rapid utility-first, fully responsive styling.
+* **Lucide React** for a clean, minimalist icon ecosystem.
 
 ### Backend & API
-* **Python** com **FastAPI** proporcionando um backend de alta performance, assíncrono e documentação automática via Swagger/OpenAPI.
-* **SQLAlchemy** como ORM para mapeamento e manipulação de dados de forma eficiente.
+* **Python** with **FastAPI** powering an asynchronous, high-performance backend with automated interactive documentation via Swagger/OpenAPI.
+* **SQLAlchemy** acting as the ORM layer for seamless and efficient data mapping and manipulation.
 
-### Banco de Dados & Infraestrutura
-* **PostgreSQL** como banco de dados relacional principal para persistência robusta dos dados de inventário.
-* **Docker & Docker Compose** para orquestração de ambientes, isolamento de dependências e agilidade no setup.
+### Database & Infrastructure
+* **PostgreSQL** serving as the primary relational database
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+ for robust inventory data persistence.
+* **Docker & Docker Compose** for multi-container orchestration, dependency isolation, and rapid environment setup.
 
 ---
 
-## 🚀 Como Executar o Projeto
+## 🚀 Getting Started
 
-### Pré-requisitos
-Antes de começar, certifique-se de ter instalado em sua máquina:
+### Prerequisites
+Before you begin, ensure you have the following tools installed on your local machine:
 * [Git](https://git-scm.com/)
-* [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/)
+* [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 
-### 🛠️ Clonando o Repositório
+### 🛠️ Cloning the Repository
 
 ```bash
-# Clone o repositório
-git clone [https://github.com/seu-usuario/storagium.git](https://github.com/seu-usuario/storagium.git)
+# Clone the repository
+git clone [https://github.com/your-username/storagium.git](https://github.com/your-username/storagium.git)
 
-# Acesse a pasta do projeto
+# Navigate into the project folder
 cd storagium
