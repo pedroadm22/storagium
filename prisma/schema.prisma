@@ -1,0 +1,75 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+// 1. Usuários do Sistema
+model User {
+  id        String          @id @default(uuid())
+  name      String
+  email     String          @unique
+  role      String          @default("EMPLOYEE") // ADMIN, MANAGER, EMPLOYEE
+  createdAt DateTime        @default(now())
+  movements StockMovement[] // Relação: Movimentações que este usuário fez
+}
+
+// 2. Lojas ou Galpões de Armazenamento
+model Store {
+  id        String          @id @default(uuid())
+  name      String          @unique
+  location  String?
+  createdAt DateTime        @default(now())
+  inventories Inventory[]   // Estoque de produtos nesta loja
+  movements   StockMovement[] // Movimentações que ocorreram nesta loja
+}
+
+// 3. Catálogo Geral de Produtos
+model Product {
+  id          String      @id @default(uuid())
+  sku         String      @unique // Código de barra ou identificador único do produto (ex: PROD-123)
+  name        String
+  description String?
+  price       Decimal     @db.Decimal(10, 2)
+  createdAt   DateTime    @default(now())
+  inventories Inventory[] // Quantidades deste produto espalhadas pelas lojas
+  movements   StockMovement[]
+}
+
+// 4. Tabela Pivot: Controla a quantidade de um produto específico em uma loja específica
+model Inventory {
+  id        String   @id @default(uuid())
+  quantity  Int      @default(0) // Quantidade atual em estoque
+  minStock  Int      @default(5) // Alerta de estoque mínimo para reposição
+  
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, storeId]) // Garante que não existam duas linhas para o mesmo produto na mesma loja
+}
+
+// 5. Histórico de Movimentações (Auditoria de Entrada/Saída)
+model StockMovement {
+  id        String   @id @default(uuid())
+  quantity  Int      // Quantidade movimentada (ex: 10 para entrada, 5 para saída)
+  type      String   // "IN" (Entrada/Compra), "OUT" (Saída/Venda), "ADJUSTMENT" (Perda/Roubo)
+  reason    String?  // Motivo opcional (ex: "Venda pedido #452", "Produto danificado")
+  createdAt DateTime @default(now())
+
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id])
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
