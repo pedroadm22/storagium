@@ -9,12 +9,49 @@ generator client {
 
 // 1. Usuários do Sistema
 model User {
-  id        String          @id @default(uuid())
-  name      String
-  email     String          @unique
-  role      String          @default("EMPLOYEE") // ADMIN, MANAGER, EMPLOYEE
-  createdAt DateTime        @default(now())
-  movements StockMovement[] // Relação: Movimentações que este usuário fez
+  id            String          @id @default(uuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  role          String          @default("EMPLOYEE") // Seu campo de controle do Storagium
+  accounts      Account[]
+  sessions      Session[]
+  movements     StockMovement[] // Suas amarrações de inventário continuam aqui
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 // 2. Lojas ou Galpões de Armazenamento

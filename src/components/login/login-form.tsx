@@ -1,70 +1,65 @@
-// components/login/login-form.tsx
+// src/components/login/login-form.tsx
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, SubmitEvent } from "react";
+import { LoginSocial } from "./login-social";
+import { FaEnvelope, FaLock } from "react-icons/fa"; // Ícones para os campos idênticos à foto
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
-    setIsLoading(true);
-
-    // Aqui entrará a lógica de autenticação futuramente (NextAuth, JWT, etc.)
     console.log("Tentando logar com:", { email, password });
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-1">
-        <label htmlFor="email" className="text-xs font-medium text-slate-700">
-          E-mail institucional
-        </label>
+      {/* Input de E-mail */}
+      <div className="relative flex items-center">
+        <FaEnvelope className="absolute left-4 text-muted-foreground text-sm pointer-events-none" />
         <input
-          id="email"
           type="email"
-          placeholder="nome@empresa.com"
+          placeholder="Email address"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-          disabled={isLoading}
+          /* bg-secondary/50 dá o tom cinza perfeito e discreto que você pediu */
+          className="w-full rounded-xl border border-border bg-secondary/50 pl-11 pr-4 py-3 text-sm text-foreground placeholder-muted-foreground focus:border-primary/80 focus:bg-card focus:outline-none transition-all duration-200"
         />
       </div>
 
-      <div className="space-y-1">
-        <div className="flex items-center justify-between">
-          <label htmlFor="password" className="text-xs font-medium text-slate-700">
-            Senha
-          </label>
-          <a href="#" className="text-xs text-blue-600 hover:underline">
-            Esqueceu a senha?
-          </a>
-        </div>
+      {/* Input de Senha */}
+      <div className="relative flex items-center">
+        <FaLock className="absolute left-4 text-muted-foreground text-sm pointer-events-none" />
         <input
-          id="password"
           type="password"
+          placeholder="Password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-          disabled={isLoading}
+          className="w-full rounded-xl border border-border bg-secondary/50 pl-11 pr-4 py-3 text-sm text-foreground placeholder-muted-foreground focus:border-primary/80 focus:bg-card focus:outline-none transition-all duration-200"
         />
       </div>
 
+      {/* Botão de Login */}
       <button
         type="submit"
-        disabled={isLoading}
-        className="w-full rounded-lg bg-slate-900 py-2.5 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900/20 active:bg-slate-950 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-xl bg-primary py-3 text-sm font-medium text-primary-foreground hover:opacity-95 shadow-lg shadow-primary/10 active:scale-[0.99] transition-all duration-200 cursor-pointer"
       >
-        {isLoading ? "Autenticando..." : "Entrar no sistema"}
+        Login
       </button>
+
+      {/* Divisor OR */}
+      <div className="relative flex py-2 items-center justify-center text-xs uppercase">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-border"></div>
+        </div>
+        <span className="relative bg-card px-3 text-muted-foreground">OR</span>
+      </div>
+
+      <LoginSocial />
     </form>
   );
 }
