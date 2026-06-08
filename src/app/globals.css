@@ -1,26 +1,53 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Ativa o suporte ao toggle por classe. Agora ele gerencia tanto .dark quanto .light se necessário */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+@theme {
+  --color-background: rgb(10 11 14);      /* Preto Profundo */
+  --color-foreground: rgb(228 231 236);
+
+  --color-card: rgb(21 23 27);             /* Cinza Grafite Escuro */
+  --color-card-foreground: rgb(228 231 236);
+
+  --color-primary: rgb(59 130 246);        /* Azul Elétrico Neon */
+  --color-primary-foreground: rgb(10 11 14);
+
+  --color-secondary: rgb(30 33 38);        /* Campo cinza escuro para o input */
+  --color-secondary-foreground: rgb(228 231 236);
+
+  --color-muted-foreground: rgb(148 163 184);
+  --color-border: rgb(38 42 50);           /* Borda grafite sutil */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer theme {
+  :root:not(.dark), .light {
+    --color-background: rgb(241 243 245);    /* Cinza claro suave de fundo */
+    --color-foreground: rgb(18 24 38);       /* Texto escuro */
+    
+    --color-card: rgb(255 255 255);          /* Card puramente branco */
+    --color-card-foreground: rgb(18 24 38);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-primary: rgb(37 99 235);         /* Azul Real */
+    --color-primary-foreground: rgb(255 255 255);
+
+    --color-secondary: rgb(226 232 240);     /* Cinza dos inputs */
+    --color-secondary-foreground: rgb(18 24 38);
+
+    --color-muted-foreground: rgb(100 116 139);
+    --color-border: rgb(203 213 225);        /* Bordas mais visíveis */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 }

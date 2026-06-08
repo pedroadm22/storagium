@@ -1,33 +1,15 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// src/app/layout.tsx
+import { Providers } from "./providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Storagium",
-  description: "Invenrtory management system built with Next.js and Tailwind CSS",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    // O atributo abaixo avisa ao React/Next.js para ignorar as pequenas 
+    // diferenças de atributos geradas pelo script do tema no primeiro carregamento
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
