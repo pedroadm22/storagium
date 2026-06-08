@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import { Providers } from "./providers";
 import "./globals.css";
 

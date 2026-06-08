@@ -1,4 +1,3 @@
-// src/components/login/social-button.tsx
 "use client";
 
 import { IconType } from "react-icons";

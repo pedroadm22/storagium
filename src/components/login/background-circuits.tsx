@@ -1,4 +1,3 @@
-// src/components/login/background-circuits.tsx
 export function BackgroundCircuits() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-300">

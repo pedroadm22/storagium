@@ -1,4 +1,3 @@
-// components/login/login-header.tsx
 import Image from "next/image";
 import { Container } from 'lucide-react';
 

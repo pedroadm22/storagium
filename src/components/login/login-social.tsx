@@ -1,4 +1,3 @@
-// src/components/login/login-social.tsx
 "use client";
 
 import { signIn } from "next-auth/react";

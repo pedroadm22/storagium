@@ -1,11 +1,10 @@
-// src/components/login/login-card.tsx
 import { LoginForm } from "./login-form";
 import { Container } from "lucide-react"; 
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function LoginCard() {
   return (
-    <div className="w-full max-w-[400px] z-10 rounded-2xl border border-border bg-card/80 p-8 shadow-2xl backdrop-blur-md space-y-6">
+    <div className="w-full max-w-100 z-10 rounded-2xl border border-border bg-card/80 p-8 shadow-2xl backdrop-blur-md space-y-6">
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
